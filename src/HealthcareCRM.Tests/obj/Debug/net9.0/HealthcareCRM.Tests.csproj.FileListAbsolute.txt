@@ -146,3 +146,4 @@ C:\Users\Dell\Desktop\HealthcareCRM\src\HealthcareCRM.Tests\obj\Debug\net9.0\ref
 C:\Users\Dell\Desktop\HealthcareCRM\src\HealthcareCRM.Tests\obj\Debug\net9.0\HealthcareCRM.Tests.pdb
 C:\Users\Dell\Desktop\HealthcareCRM\src\HealthcareCRM.Tests\obj\Debug\net9.0\HealthcareCRM.Tests.genruntimeconfig.cache
 C:\Users\Dell\Desktop\HealthcareCRM\src\HealthcareCRM.Tests\obj\Debug\net9.0\ref\HealthcareCRM.Tests.dll
+C:\Users\Dell\Desktop\HealthcareCRM\src\HealthcareCRM.Tests\obj\Debug\net9.0\HealthcareCRM.Tests.sourcelink.json

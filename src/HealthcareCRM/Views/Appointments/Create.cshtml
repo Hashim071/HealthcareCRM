@@ -1,0 +1,63 @@
+@model HealthcareCRM.Models.Appointment
+
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="mb-3">
+        <a asp-action="Index" class="text-decoration-none text-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Directory
+        </a>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-4">
+            <h3 class="card-title text-primary fw-bold mb-4">Book New Appointment</h3>
+
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="PatientId" class="form-label fw-semibold text-secondary">Select Patient</label>
+                    <select asp-for="PatientId" class="form-select py-2" asp-items="ViewBag.PatientsList">
+                        <option value="">-- Choose Patient --</option>
+                    </select>
+                    <span asp-validation-for="PatientId" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AppointmentDate" class="form-label fw-semibold text-secondary">Appointment Date & Time</label>
+                    <input asp-for="AppointmentDate" class="form-control py-2" type="datetime-local" />
+                    <span asp-validation-for="AppointmentDate" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Reason" class="form-label fw-semibold text-secondary">Reason for Appointment</label>
+                    <textarea asp-for="Reason" class="form-control" rows="3" placeholder="Enter purpose of visit..."></textarea>
+                    <span asp-validation-for="Reason" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Status" class="form-label fw-semibold text-secondary">Initial Status</label>
+                    <select asp-for="Status" class="form-select py-2">
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Canceled">Canceled</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger small"></span>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary py-2.5 fw-semibold shadow-sm">
+                        Confirm Appointment Booking
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

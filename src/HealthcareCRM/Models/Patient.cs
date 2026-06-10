@@ -43,5 +43,7 @@ namespace HealthcareCRM.Models
 
         // 8. Created At Timestamp
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        // One Patient can have Many Appointments
+        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
     }
 }

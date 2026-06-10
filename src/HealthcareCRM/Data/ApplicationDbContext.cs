@@ -12,5 +12,6 @@ namespace HealthcareCRM.Data
 
         // Patient Table database me create karne ke liye DbSet add kiya
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
     }
 }

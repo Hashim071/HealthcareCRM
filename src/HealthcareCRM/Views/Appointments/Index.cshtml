@@ -1,0 +1,74 @@
+@model IEnumerable<HealthcareCRM.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Appointments Directory";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Appointments Directory</h2>
+        <a asp-action="Create" class="btn btn-success px-4 py-2 fw-semibold shadow-sm">
+            <i class="bi bi-calendar-plus"></i> Book New Appointment
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4 py-3 text-secondary fw-semibold">Patient Name</th>
+                            <th class="py-3 text-secondary fw-semibold">Date & Time</th>
+                            <th class="py-3 text-secondary fw-semibold">Reason</th>
+                            <th class="py-3 text-secondary fw-semibold">Status</th>
+                            <th class="pe-4 py-3 text-end text-secondary fw-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-muted">
+                                    <p class="mb-0 fw-medium">No appointments scheduled yet.</p>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-semibold text-dark">@item.Patient?.FullName</td>
+                                    <td>@item.AppointmentDate.ToString("yyyy-MM-dd hh:mm tt")</td>
+                                    <td class="text-truncate" style="max-width: 200px;">@item.Reason</td>
+                                    <td>
+                                        <span class="badge @(item.Status == "Scheduled" ? "bg-primary-subtle text-primary" : item.Status == "Completed" ? "bg-success-subtle text-success" : "bg-danger-subtle text-danger") px-2.5 py-1.5 fw-semibold rounded-pill">
+                                            @item.Status
+                                        </span>
+                                    </td>
+                                    <td class="pe-4 text-end">
+                                        <button class="btn btn-outline-secondary btn-sm rounded px-3" onclick="viewJson('@item.Id')">
+                                            View JSON Response
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function viewJson(id) {
+        fetch(`/Appointments/GetAppointmentJson/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                alert(JSON.stringify(data, null, 2));
+            })
+            .catch(err => alert("Error fetching data"));
+    }
+</script>
