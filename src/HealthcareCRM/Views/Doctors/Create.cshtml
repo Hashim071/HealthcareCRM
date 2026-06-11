@@ -1,0 +1,63 @@
+@model HealthcareCRM.Models.Doctor
+
+@{
+    ViewData["Title"] = "Add Doctor Profile";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="mb-3">
+        <a asp-action="Index" class="text-decoration-none text-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Directory
+        </a>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-4">
+            <h3 class="card-title text-primary fw-bold mb-4">Add Doctor Profile</h3>
+
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-semibold text-secondary">Doctor Full Name</label>
+                    <input asp-for="Name" class="form-control py-2" placeholder="Dr. John Doe" />
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Specialization" class="form-label fw-semibold text-secondary">Specialization</label>
+                    <input asp-for="Specialization" class="form-control py-2" placeholder="e.g., Cardiology, Pediatrics" />
+                    <span asp-validation-for="Specialization" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-semibold text-secondary">Email Address</label>
+                    <input asp-for="Email" class="form-control py-2" type="email" placeholder="doctor@crm.com" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label fw-semibold text-secondary">Phone Number</label>
+                    <input asp-for="Phone" class="form-control py-2" placeholder="e.g., +923001234567" />
+                    <span asp-validation-for="Phone" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="RoomNumber" class="form-label fw-semibold text-secondary">Room / Cabin Number</label>
+                    <input asp-for="RoomNumber" class="form-control py-2" placeholder="e.g., Room-404" />
+                    <span asp-validation-for="RoomNumber" class="text-danger small"></span>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary py-2.5 fw-semibold shadow-sm">
+                        Register Doctor Profile
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
